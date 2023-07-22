@@ -162,6 +162,8 @@ LevelSelect_DrawNames:
 section "Level names",romx
 LevelSelect_LevelNames:
     dw       .0
+    dw       .1
 NUM_LEVEL_SELECT_ENTRIES = (@-LevelSelect_LevelNames)/2
     
 .0  db          "TEST MAP",0
+.1  db          "BEACH 1",0

@@ -313,14 +313,17 @@ MetatileViewer_ViewerLoop:
 
 MetatileViewer_GFXPointers:
     dwb3    TestMapTiles,Pal_TestMap,Tileset_Test
+    dwb3    BeachTiles,Pal_Beach,Tileset_Beach
 
 ; ================================================================
 
 section "Tile Viewer - Graphics set selector text",romx
 MetatileViewer_GFXMenuText:
     dw  .testmap
+    dw  .beach
     dw  .cancel
 NUM_TILESET_VIEWER_ENTRIES = (@-MetatileViewer_GFXMenuText)/2
 
 .testmap        db  "TEST MAP",0
+.beach          db  "BEACH",0
 .cancel         db  "CANCEL",0

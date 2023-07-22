@@ -530,10 +530,4 @@ def main(argv=None):
                 outfp.write(ef)
 
 if __name__=='__main__':
-    if "idlelib" in sys.modules and len(sys.argv) < 2:
-        import shlex
-        main(shlex.split("""
-extractcels.py ../tilesets/Libbet.ec ../tilesets/Libbet.png "" -
-"""))
-    else:
-        main()
+    main()

@@ -113,3 +113,5 @@ Pal_TestMap:
 
 ; ================
 
+Pal_Beach:  incbin  "GFX/Tilesets/Beach.pal"
+

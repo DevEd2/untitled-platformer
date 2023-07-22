@@ -14,7 +14,6 @@ for file in *.ec; do
 	echo $fname
     python3 ../../Tools/extractcels.py -v $fname.ec $fname.png $fname.2bpp $fname.sdef
 done
-rm _*.png
 cd ../..
 
 echo "Converting maps... (This may take a while)"

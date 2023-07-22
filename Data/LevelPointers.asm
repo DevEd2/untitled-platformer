@@ -14,8 +14,7 @@ NUM_LEVELS = NUM_LEVELS + 1
 endm
 
 LevelParallaxFlags:
-    ; test map
-    db          0
 
 LevelPointers:
     addlevel    TestMap
+    addlevel    Beach1
