@@ -52,7 +52,6 @@ GetTileL:
     ld      h,a
     pop     af
     jr      nc,.nocarry
-    ld      b,b
     ld      a,[Engine_CurrentScreen]
     and     $f
     jr      z,.forcesolid

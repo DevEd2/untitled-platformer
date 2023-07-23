@@ -532,7 +532,7 @@ ProcessPlayer:
     jr      z,:++
 .notbreakable1
     cp      COLLISION_SOLID
-    jr      z,:++
+    jr      z,.solidL
     ; Bottom Left
 :
     ld      a,[Player_YPos]
@@ -557,7 +557,7 @@ ProcessPlayer:
     jp      nz,.xCollideEnd
 .notbreakable2
     cp      COLLISION_SOLID
-    jr      z,:++
+    jr      z,.solidL
 :   ; Center Left
     ld      a,[Player_YPos]
     ld      l,a
@@ -580,7 +580,8 @@ ProcessPlayer:
 .notbreakable3
     cp      COLLISION_SOLID
     jp      nz,.xCollideEnd
-:   ; Collision with left wall
+.solidL
+    ; Collision with left wall
  
     ; check if we're dashing
     ld      a,[Player_MovementFlags2]
@@ -673,7 +674,7 @@ ProcessPlayer:
     jr      z,:++
 .notbreakable4
     cp      COLLISION_SOLID
-    jr      z,:++
+    jr      z,.solidR
     ; Bottom Right
 :
     ld      a,[Player_YPos]
@@ -698,7 +699,7 @@ ProcessPlayer:
     jp      nz,.xCollideEnd
 .notbreakable5
     cp      COLLISION_SOLID
-    jr      z,:++
+    jr      z,.solidR
 :   ; Center Left
     ld      a,[Player_YPos]
     ld      l,a
@@ -722,6 +723,7 @@ ProcessPlayer:
     cp      COLLISION_SOLID
     jp      nz,.xCollideEnd
 :   
+.solidR
     ; Collision with right wall
     ; check if we're dashing
     
