@@ -52,6 +52,10 @@ GetTileL:
     ld      h,a
     pop     af
     jr      nc,.nocarry
+    ld      b,b
+    ld      a,[Engine_CurrentScreen]
+    and     $f
+    jr      z,.forcesolid
     dec     h
 .nocarry
     ld      l,e
@@ -73,6 +77,9 @@ GetTileL:
 :	ld		a,[hl]
 	pop		bc
 	ret
+.forcesolid
+    ld      a,COLLISION_SOLID
+    ret
     
 ; Input:    E = Tile coordinates
 ;       Carry = Subtract 1 from screen 
@@ -95,6 +102,12 @@ GetTileR:
     ld      h,a
     pop     af
     jr      nc,.nocarry
+    ld      a,[Engine_CurrentScreen]
+    and     $f
+    ld      b,a
+    ld      a,[Engine_NumScreens]
+    cp      b
+    jr      z,.forcesolid
     inc     h
 .nocarry
     ld      l,e
@@ -112,6 +125,9 @@ GetTileR:
 	jr		nc,:+
 	inc		h
 :	ld		a,[hl]
+    ret
+.forcesolid
+    ld      a,COLLISION_SOLID
     ret
 
 ; Input:    A = Tile coordinates
