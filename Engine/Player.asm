@@ -557,9 +557,30 @@ ProcessPlayer:
     jp      nz,.xCollideEnd
 .notbreakable2
     cp      COLLISION_SOLID
+    jr      z,:++
+:   ; Center Left
+    ld      a,[Player_YPos]
+    ld      l,a
+    ld      a,[Player_XPos]
+    sub     Player_HitboxWidth
+    push    af
+    ld      h,a
+    call    GetTileCoordinates
+    ld      e,a
+    pop     af
+    call    GetTileL
+    cp      COLLISION_BREAKABLE
+    jr      nz,.notbreakable3
+    push    af
+    ld      a,[Player_MovementFlags2]
+    ld      b,a
+    pop     af
+    bit     bPlayerDashMaxSpeed,b
     jp      nz,.xCollideEnd
-:
-    ; Collision with left wall
+.notbreakable3
+    cp      COLLISION_SOLID
+    jp      nz,.xCollideEnd
+:   ; Collision with left wall
  
     ; check if we're dashing
     ld      a,[Player_MovementFlags2]
@@ -643,14 +664,14 @@ ProcessPlayer:
     pop     af
     call    GetTileR
     cp      COLLISION_BREAKABLE
-    jr      nz,.notbreakable3
+    jr      nz,.notbreakable4
     push    af
     ld      a,[Player_MovementFlags2]
     ld      b,a
     pop     af
     bit     bPlayerDashMaxSpeed,b
     jr      z,:++
-.notbreakable3
+.notbreakable4
     cp      COLLISION_SOLID
     jr      z,:++
     ; Bottom Right
@@ -668,17 +689,39 @@ ProcessPlayer:
     pop     af
     call    GetTileR
     cp      COLLISION_BREAKABLE
-    jr      nz,.notbreakable4
+    jr      nz,.notbreakable5
     push    af
     ld      a,[Player_MovementFlags2]
     ld      b,a
     pop     af
     bit     bPlayerDashMaxSpeed,b
-    jr      nz,.xCollideEnd
-.notbreakable4
+    jp      nz,.xCollideEnd
+.notbreakable5
     cp      COLLISION_SOLID
-    jr      nz,.xCollideEnd
-:
+    jr      z,:++
+:   ; Center Left
+    ld      a,[Player_YPos]
+    ld      l,a
+    ld      a,[Player_XPos]
+    add     Player_HitboxWidth
+    push    af
+    ld      h,a
+    call    GetTileCoordinates
+    ld      e,a
+    pop     af
+    call    GetTileR
+    cp      COLLISION_BREAKABLE
+    jr      nz,.notbreakable6
+    push    af
+    ld      a,[Player_MovementFlags2]
+    ld      b,a
+    pop     af
+    bit     bPlayerDashMaxSpeed,b
+    jp      nz,.xCollideEnd
+.notbreakable6
+    cp      COLLISION_SOLID
+    jp      nz,.xCollideEnd
+:   
     ; Collision with right wall
     ; check if we're dashing
     
