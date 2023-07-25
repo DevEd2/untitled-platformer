@@ -614,9 +614,6 @@ DevSoundX_UpdateRegisters:
     ret
 
 .dopulse1
-;    ld      a,[DSFX_Flags]
-;    bit     bSFX_CH1,a
-;    ret     nz
     ld      a,[hl+]
     ldh     [rNR11],a
     ld      a,[hl+]
@@ -657,9 +654,6 @@ DevSoundX_UpdateRegisters:
     ret
 
 .dopulse2
-;    ld      a,[DSFX_Flags]
-;    bit     bSFX_CH2,a
-;    ret     nz
     ld      a,[hl+]
     ldh     [rNR21],a
     ld      a,[hl+]
@@ -700,7 +694,10 @@ DevSoundX_UpdateRegisters:
     ret
 
 .dowave
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
+    ld      b,a
+    ld      a,[DSFX_Flags2]
+    or      b
     bit     DSFX_CH3,a
     ret     nz
     
@@ -737,7 +734,10 @@ DevSoundX_UpdateRegisters:
     ret
     
 .donoise
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
+    ld      b,a
+    ld      a,[DSFX_Flags2]
+    or      b
     bit     DSFX_CH4,a
     ret     nz
     ld      a,[DSX_MusicPlaying]

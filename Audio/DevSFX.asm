@@ -41,11 +41,17 @@
 ; IF BIT 6: Delay (1 byte)
 
 section "DevSFX RAM",wram0
-DSFX_Flags:         db
-DSFX_Delay:         db
-DSFX_CH3LastFreqHi: db
-DSFX_Bank:          db
-DSFX_Pointer:       dw
+DSFX_Flags1:         db
+DSFX_Delay1:         db
+DSFX_CH3LastFreqHi1: db
+DSFX_Bank1:          db
+DSFX_Pointer1:       dw
+
+DSFX_Flags2:         db
+DSFX_Delay2:         db
+DSFX_CH3LastFreqHi2: db
+DSFX_Bank2:          db
+DSFX_Pointer2:       dw
 
 DSFX_CH3        = 0
 DSFX_CH4        = 1
@@ -66,32 +72,51 @@ section "DevSFX routines",rom0
 ;         b = bank
 DSFX_PlaySFX:
     ld      a,b
-    ld      [DSFX_Bank],a
+    ld      [DSFX_Bank1],a
     xor     a
-    ld      [DSFX_CH3LastFreqHi],a
+    ld      [DSFX_CH3LastFreqHi1],a
     inc     a
-    ld      [DSFX_Delay],a
+    ld      [DSFX_Delay1],a
     ld      a,1<<DSFX_PLAYING
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ld      a,l
-    ld      [DSFX_Pointer],a
+    ld      [DSFX_Pointer1],a
     ld      a,h
-    ld      [DSFX_Pointer+1],a
+    ld      [DSFX_Pointer1+1],a
     ret
 
-DSFX_Update:    
-    ld      a,[DSFX_Flags]
+DSFX_PlaySFX2:
+    ld      a,b
+    ld      [DSFX_Bank2],a
+    xor     a
+    ld      [DSFX_CH3LastFreqHi2],a
+    inc     a
+    ld      [DSFX_Delay2],a
+    ld      a,1<<DSFX_PLAYING
+    ld      [DSFX_Flags2],a
+    ld      a,l
+    ld      [DSFX_Pointer2],a
+    ld      a,h
+    ld      [DSFX_Pointer2+1],a
+    ret
+
+DSFX_Update:
+    call    DSFX_Update2
+    ; fall through
+
+DSFX_Update1:    
+    ld      a,[DSFX_Flags1]
     bit     DSFX_PLAYING,a
     ret     z
-    ld      hl,DSFX_Delay
+    ld      hl,DSFX_Delay1
     dec     [hl]
     ret     nz
     inc     [hl]
-    ld      a,[DSFX_Bank]
+    ld      a,[DSFX_Bank1]
     ld      b,a
     rst     Bankswitch
     
-    ld      hl,DSFX_Pointer
+    ld      hl,DSFX_Pointer1
     ld      a,[hl+]
     ld      h,[hl]
     ld      l,a
@@ -117,9 +142,9 @@ DSFX_Update:
     call    c,.end
     resbank
     ld      a,l
-    ld      [DSFX_Pointer],a
+    ld      [DSFX_Pointer1],a
     ld      a,h
-    ld      [DSFX_Pointer+1],a
+    ld      [DSFX_Pointer1+1],a
     ret
 
 .ch3wavevol
@@ -154,7 +179,7 @@ DSFX_Update:
     ldh     [rNR30],a
     or      %01111111
     ldh     [rNR51],a
-    ld      a,[DSFX_CH3LastFreqHi]
+    ld      a,[DSFX_CH3LastFreqHi1]
     set     7,a
     ldh     [rNR34],a
     pop     hl
@@ -165,7 +190,7 @@ DSFX_Update:
     rra         ; A = ??????VV
     and     3   ; A = 000000VV
     push    hl
-    ld      hl,.wavevols
+    ld      hl,DSFX_WaveVols
     add     l
     ld      l,a
     jr      nc,:+
@@ -174,75 +199,239 @@ DSFX_Update:
     pop     hl
     ldh     [rNR32],a
     and     a
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
     jr      nz,:+
     res     DSFX_CH3,a
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
 :   or      1<<DSFX_CH3
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
-.wavevols
-    db      $00,$60,$40,$20
     
 .ch3freqlo
     ld      a,[hl+]
     ldh     [rNR33],a
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
     or      1<<DSFX_CH3
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
 
 .ch3freqhi
     ld      a,[hl+]
     and     $7
-    ld      [DSFX_CH3LastFreqHi],a
+    ld      [DSFX_CH3LastFreqHi1],a
     ldh     [rNR34],a
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
     or      1<<DSFX_CH3
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
 
 .ch4env
     ld      a,[hl+]
     ldh     [rNR42],a
     and     a
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
     jr      nz,:+
     res     DSFX_CH4,a
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
 :   or      1<<DSFX_CH4
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
 
 .ch4freq
     ld      a,[hl+]
     ldh     [rNR43],a
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
     or      1<<DSFX_CH4
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
 
 .ch4reset
     ld      a,%10000000
     ldh     [rNR44],a
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
     or      1<<DSFX_CH4
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
     ret
 
 .setdelay
     ld      a,[hl+]
-    ld      [DSFX_Delay],a
+    ld      [DSFX_Delay1],a
     ret
 
 .end
-    ld      hl,DSFX_Flags
+    ld      hl,DSFX_Flags1
     ld      [hl],0
     ld      a,1
     ld      [DSX_ForceWaveReload],a
     ret
+
+DSFX_Update2:    
+    ld      a,[DSFX_Flags2]
+    bit     DSFX_PLAYING,a
+    ret     z
+    ld      hl,DSFX_Delay2
+    dec     [hl]
+    ret     nz
+    inc     [hl]
+    ld      a,[DSFX_Bank2]
+    ld      b,a
+    rst     Bankswitch
+    
+    ld      hl,DSFX_Pointer2
+    ld      a,[hl+]
+    ld      h,[hl]
+    ld      l,a
+
+    ld      a,[hl+]
+    ld      e,a
+    
+    rr      e
+    call    c,.ch3wavevol
+    rr      e
+    call    c,.ch3freqlo
+    rr      e
+    call    c,.ch3freqhi
+    rr      e
+    call    c,.ch4env
+    rr      e
+    call    c,.ch4freq
+    rr      e
+    call    c,.ch4reset
+    rr      e
+    call    c,.setdelay
+    rr      e
+    call    c,.end
+    resbank
+    ld      a,l
+    ld      [DSFX_Pointer2],a
+    ld      a,h
+    ld      [DSFX_Pointer2+1],a
+    ret
+
+.ch3wavevol
+    ld      a,[hl+]
+    ld      d,a
+    and     $3f
+    jr      z,.skipwave
+    dec     a
+    push    hl
+    ld      l,a
+    ld      h,0
+    add     hl,hl   ; x2
+    add     hl,hl   ; x4
+    add     hl,hl   ; x8
+    add     hl,hl   ; x16
+    ld      b,h
+    ld      c,l
+    ld      hl,DSFX_Waves
+    add     hl,bc
+    ldh     a,[rNR51]
+    and     %10111011
+    ldh     [rNR51],a
+    xor     a
+    ld      [rNR30],a
+    def     n = 0
+    rept    16
+    ld      a,[hl+]
+    ld      [$ff30+n],a
+    def     n = n + 1
+    endr
+    ld      a,%10000000
+    ldh     [rNR30],a
+    or      %01111111
+    ldh     [rNR51],a
+    ld      a,[DSFX_CH3LastFreqHi2]
+    set     7,a
+    ldh     [rNR34],a
+    pop     hl
+.skipwave
+    ld      a,d ; A = VV??????
+    swap    a   ; A = ????VV??
+    rra         ; A = ?????VV?
+    rra         ; A = ??????VV
+    and     3   ; A = 000000VV
+    push    hl
+    ld      hl,DSFX_WaveVols
+    add     l
+    ld      l,a
+    jr      nc,:+
+    inc     hl
+:   ld      a,[hl]
+    pop     hl
+    ldh     [rNR32],a
+    and     a
+    ld      a,[DSFX_Flags2]
+    jr      nz,:+
+    res     DSFX_CH3,a
+    ld      [DSFX_Flags2],a
+    ret
+:   or      1<<DSFX_CH3
+    ld      [DSFX_Flags2],a
+    ret
+    
+.ch3freqlo
+    ld      a,[hl+]
+    ldh     [rNR33],a
+    ld      a,[DSFX_Flags2]
+    or      1<<DSFX_CH3
+    ld      [DSFX_Flags2],a
+    ret
+
+.ch3freqhi
+    ld      a,[hl+]
+    and     $7
+    ld      [DSFX_CH3LastFreqHi2],a
+    ldh     [rNR34],a
+    ld      a,[DSFX_Flags2]
+    or      1<<DSFX_CH3
+    ld      [DSFX_Flags2],a
+    ret
+
+.ch4env
+    ld      a,[hl+]
+    ldh     [rNR42],a
+    and     a
+    ld      a,[DSFX_Flags2]
+    jr      nz,:+
+    res     DSFX_CH4,a
+    ld      [DSFX_Flags2],a
+    ret
+:   or      1<<DSFX_CH4
+    ld      [DSFX_Flags2],a
+    ret
+
+.ch4freq
+    ld      a,[hl+]
+    ldh     [rNR43],a
+    ld      a,[DSFX_Flags2]
+    or      1<<DSFX_CH4
+    ld      [DSFX_Flags2],a
+    ret
+
+.ch4reset
+    ld      a,%10000000
+    ldh     [rNR44],a
+    ld      a,[DSFX_Flags2]
+    or      1<<DSFX_CH4
+    ld      [DSFX_Flags2],a
+    ret
+
+.setdelay
+    ld      a,[hl+]
+    ld      [DSFX_Delay2],a
+    ret
+
+.end
+    ld      hl,DSFX_Flags2
+    ld      [hl],0
+    ld      a,1
+    ld      [DSX_ForceWaveReload],a
+    ret
+
+DSFX_WaveVols:
+    db      $00,$60,$40,$20
 
 DSFX_Waves:
     db  $8B,$EF,$FF,$FF,$FF,$FF,$FE,$B8,$63,$00,$00,$00,$00,$00,$00,$36

@@ -264,7 +264,8 @@ SkipGBCScreen:
     ld      [sys_VBlankFlag],a
     ld      [sys_TimerFlag],a
     ld      [sys_LCDCFlag],a
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
+    ld      [DSFX_Flags2],a
     ld      [Engine_CameraX],a
     ld      [Engine_CameraY],a
     ld      [sys_EnableHDMA],a

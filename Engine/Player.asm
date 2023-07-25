@@ -1236,7 +1236,7 @@ Player_AccelerateLeft:
     xor     a
     ld      [Player_DashSoundTimer],a
     push    hl
-    PlaySFX DashLoop
+    PlaySFX2 DashLoop
     pop     hl
 :   call    Player_GetSpeedCapL2
 :   ld      a,h
@@ -1339,7 +1339,7 @@ Player_AccelerateRight:
     xor     a
     ld      [Player_DashSoundTimer],a
     push    hl
-    PlaySFX DashLoop
+    PlaySFX2 DashLoop
     pop     hl
 :   call    Player_GetSpeedCapR2
 :   ld      a,h

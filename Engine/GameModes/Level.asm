@@ -469,7 +469,11 @@ Level_TransitionUp:
     and     $3f
     ld      [Engine_CurrentSubarea],a
 
-    ld      a,[DSFX_Flags]
+    
+    ld      a,[DSFX_Flags1]
+    ld      b,a
+    ld      a,[DSFX_Flags2]
+    or      a
     bit     7,a
     jr      nz,:+
     ; PlaySFX transitionup
@@ -531,7 +535,10 @@ Level_TransitionDown:
     and     $3f
     ld      [Engine_CurrentSubarea],a
  
-    ld      a,[DSFX_Flags]
+    ld      a,[DSFX_Flags1]
+    ld      b,a
+    ld      a,[DSFX_Flags2]
+    or      b
     bit     7,a
     jr      nz,:+
     ; PlaySFX transitiondown

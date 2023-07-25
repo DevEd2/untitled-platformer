@@ -5,14 +5,28 @@ Engine_TilesetBank:     db
 
 ; Collision constants
 
-COLLISION_NONE          equ 0
-COLLISION_SOLID         equ 1
-COLLISION_TOPSOLID      equ 2
-COLLISION_WATER         equ 3
-COLLISION_COIN          equ 4
-COLLISION_SPRING        equ 5
-COLLISION_KILL          equ 6
-COLLISION_BREAKABLE     equ 7
+COLLISION_NONE                          = 0  ; no collision
+COLLISION_SOLID                         = 1  ; solid to player and enemies
+COLLISION_TOPSOLID                      = 2  ; solid to player and enemies only on top
+COLLISION_WATER                         = 3  ; tile is underwater and has no collision
+COLLISION_COIN                          = 4  ; player can collect tile; adds 1 to score
+COLLISION_SPRING                        = 5  ; player bounces up when this tile is touched
+COLLISION_KILL                          = 6  ; player is hurt when this tile is touched
+COLLISION_BREAKABLE                     = 7  ; player can break this tile by dashing into it
+COLLISION_BREAKABLE_COFFEE              = 8  ; player can break this tile with the coffee transformation
+COLLISION_CLIMBABLE_LAMIA               = 9  ; player can climb up this tile with the lamia transformation
+COLLISION_WATER_CURRENT_UP              = 10 ; tile is underwater and pushes player up
+COLLISION_WATER_CURRENT_DOWN            = 11 ; tile is underwater and pushes player down
+COLLISION_WATER_CURRENT_LEFT            = 12 ; tile is underwater and pushes player left
+COLLISION_WATER_CURRENT_RIGHT           = 13 ; tile is underwater and pushes player right
+COLLISION_SOLID_ENEMY                   = 14 ; tile is solid to enemies but not to the player
+COLLISION_BREAKABLE_HEAVY               = 15 ; tile breaks when a heavy object touches it from above
+COLLISION_BREAKABLE_ENEMY               = 16 ; player can break tile by throwing an enemy at it
+COLLISION_WATER_STRONG_CURRENT_UP       = 17 ; tile is underwater and pushes player up a lot
+COLLISION_WATER_STRONG_CURRENT_DOWN     = 18 ; tile is underwater and pushes player down a lot
+COLLISION_WATER_STRONG_CURRENT_LEFT     = 19 ; tile is underwater and pushes player left a lot
+COLLISION_WATER_STRONG_CURRENT_RIGHT    = 20 ; tile is underwater and pushes player right a lot
+; add more as needed
 
 section "Metatile routines",rom0
 

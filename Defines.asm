@@ -201,9 +201,17 @@ macro PlaySFX
     pop     hl
 endm
 
+macro PlaySFX2
+    push    hl
+    ld      b,bank(SFX_\1)
+    ld      hl,SFX_\1
+    call    DSFX_PlaySFX2
+    pop     hl
+endm
+
 tmcoord:    macro
     ld      hl,sys_TilemapBuffer + ((\2*20) | \1)
-    endm
+endm
     
 ; === Project-specific macros ===
 

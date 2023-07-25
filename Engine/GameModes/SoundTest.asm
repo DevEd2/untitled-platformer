@@ -165,7 +165,8 @@ SoundTestLoop:
     rst     WaitVBlank
     xor     a
     ldh     [rLCDC],a
-    ld      [DSFX_Flags],a
+    ld      [DSFX_Flags1],a
+    ld      [DSFX_Flags2],a
     jp      GM_DebugMenu
 .continue    
     ld      a,[Debug_MusicID]
@@ -188,6 +189,9 @@ SoundTest_SFXPointers:
     bankptr SFX_DashLoop
     bankptr SFX_Skid
     bankptr SFX_DashWall
+    bankptr SFX_EnemyKill
+    bankptr SFX_BlockBreak
+    bankptr SFX_EmilyOuch
     
 section "Sound test text",romx
 

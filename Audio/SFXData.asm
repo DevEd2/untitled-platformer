@@ -40,7 +40,7 @@ SFX_Test:
 section "SFX - Jump",romx
 SFX_Jump:
     db %00000111
-    db 192 | $F ; ch3 vol 0x3 + ch3 wave
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
     db 9 ; ch3 freq low 0x9
     db 7 ; ch3 freq high 0x7
     db %00000110
@@ -104,7 +104,7 @@ SFX_DashLoop:
 section "SFX - Skid",romx
 SFX_Skid:
     db %00000111
-    db 64 | $f ; ch3 vol 0x1 + ch3 wave
+    db 64 | $10 ; ch3 vol 0x1 + ch3 wave
     db 190 ; ch3 freq low 0xbe
     db 7 ; ch3 freq high 0x7
     db %00000011
@@ -191,7 +191,7 @@ SFX_Skid:
 section "SFX - Dash Into Wall",romx
 SFX_DashWall:
     db %00111111
-    db 192 | $f ; ch3 vol 0x3 + ch3 wave
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
     db 161 ; ch3 freq low 0xa1
     db 6 ; ch3 freq high 0x6
     db 160 ; ch4 envelope 0xa0
@@ -228,7 +228,193 @@ SFX_DashWall:
     db 32 ; ch4 envelope 0x20
     db 93 ; ch4 freq 0x5d
     db %10111011
-    db 0 | $f ; ch3 vol 0x0 + ch3 wave
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
     db 238 ; ch3 freq low 0xee
     db 0 ; ch4 envelope 0x0
     db 93 ; ch4 freq 0x5d
+
+section "SFX - Kill Enemy",romx
+SFX_EnemyKill:
+    db %00111111
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 246 ; ch3 freq low 0xf6
+    db 6 ; ch3 freq high 0x6
+    db 32 ; ch4 envelope 0x20
+    db 110 ; ch4 freq 0x6e
+    db %00000010
+    db 230 ; ch3 freq low 0xe6
+    db %00000010
+    db 214 ; ch3 freq low 0xd6
+    db %00000010
+    db 198 ; ch3 freq low 0xc6
+    db %00111110
+    db 118 ; ch3 freq low 0x76
+    db 7 ; ch3 freq high 0x7
+    db 64 ; ch4 envelope 0x40
+    db 6 ; ch4 freq 0x6
+    db %00010010
+    db 54 ; ch3 freq low 0x36
+    db 37 ; ch4 freq 0x25
+    db %00010110
+    db 246 ; ch3 freq low 0xf6
+    db 6 ; ch3 freq high 0x6
+    db 52 ; ch4 freq 0x34
+    db %00010010
+    db 182 ; ch3 freq low 0xb6
+    db 76 ; ch4 freq 0x4c
+    db %00010010
+    db 118 ; ch3 freq low 0x76
+    db 77 ; ch4 freq 0x4d
+    db %00010010
+    db 54 ; ch3 freq low 0x36
+    db 93 ; ch4 freq 0x5d
+    db %00010110
+    db 246 ; ch3 freq low 0xf6
+    db 5 ; ch3 freq high 0x5
+    db 108 ; ch4 freq 0x6c
+    db %00111111
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 118 ; ch3 freq low 0x76
+    db 7 ; ch3 freq high 0x7
+    db 48 ; ch4 envelope 0x30
+    db 6 ; ch4 freq 0x6
+    db %00010010
+    db 54 ; ch3 freq low 0x36
+    db 37 ; ch4 freq 0x25
+    db %00010110
+    db 246 ; ch3 freq low 0xf6
+    db 6 ; ch3 freq high 0x6
+    db 52 ; ch4 freq 0x34
+    db %00010010
+    db 182 ; ch3 freq low 0xb6
+    db 76 ; ch4 freq 0x4c
+    db %00010010
+    db 118 ; ch3 freq low 0x76
+    db 77 ; ch4 freq 0x4d
+    db %00010010
+    db 54 ; ch3 freq low 0x36
+    db 93 ; ch4 freq 0x5d
+    db %00010110
+    db 246 ; ch3 freq low 0xf6
+    db 5 ; ch3 freq high 0x5
+    db 108 ; ch4 freq 0x6c
+    db %00111111
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 118 ; ch3 freq low 0x76
+    db 7 ; ch3 freq high 0x7
+    db 16 ; ch4 envelope 0x10
+    db 6 ; ch4 freq 0x6
+    db %00010010
+    db 54 ; ch3 freq low 0x36
+    db 37 ; ch4 freq 0x25
+    db %00010110
+    db 246 ; ch3 freq low 0xf6
+    db 6 ; ch3 freq high 0x6
+    db 52 ; ch4 freq 0x34
+    db %00010010
+    db 182 ; ch3 freq low 0xb6
+    db 76 ; ch4 freq 0x4c
+    db %00010010
+    db 118 ; ch3 freq low 0x76
+    db 77 ; ch4 freq 0x4d
+    db %00010010
+    db 54 ; ch3 freq low 0x36
+    db 93 ; ch4 freq 0x5d
+    db %00010110
+    db 246 ; ch3 freq low 0xf6
+    db 5 ; ch3 freq high 0x5
+    db 108 ; ch4 freq 0x6c
+    db %10101001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 0 ; ch4 envelope 0x0
+
+section "SFX data - Break block",romx
+SFX_BlockBreak:
+    db %00111000
+    db 240 ; ch4 envelope 0xf0
+    db 31 ; ch4 freq 0x1f
+    db %00110000
+    db 23 ; ch4 freq 0x17
+    db %00110000
+    db 77 ; ch4 freq 0x4d
+    db %00110000
+    db 69 ; ch4 freq 0x45
+    db %00111000
+    db 224 ; ch4 envelope 0xe0
+    db 46 ; ch4 freq 0x2e
+    db %00110000
+    db 38 ; ch4 freq 0x26
+    db %00110000
+    db 79 ; ch4 freq 0x4f
+    db %00110000
+    db 71 ; ch4 freq 0x47
+    db %00111000
+    db 64 ; ch4 envelope 0x40
+    db 60 ; ch4 freq 0x3c
+    db %00110000
+    db 52 ; ch4 freq 0x34
+    db %00110000
+    db 92 ; ch4 freq 0x5c
+    db %00110000
+    db 84 ; ch4 freq 0x54
+    db %00111000
+    db 48 ; ch4 envelope 0x30
+    db 63 ; ch4 freq 0x3f
+    db %00110000
+    db 55 ; ch4 freq 0x37
+    db %00110000
+    db 108 ; ch4 freq 0x6c
+    db %00110000
+    db 100 ; ch4 freq 0x64
+    db %00111000
+    db 32 ; ch4 envelope 0x20
+    db 77 ; ch4 freq 0x4d
+    db %00110000
+    db 69 ; ch4 freq 0x45
+    db %00110000
+    db 110 ; ch4 freq 0x6e
+    db %00110000
+    db 102 ; ch4 freq 0x66
+    db %00111000
+    db 16 ; ch4 envelope 0x10
+    db 79 ; ch4 freq 0x4f
+    db %00110000
+    db 71 ; ch4 freq 0x47
+    db %00110000
+    db 125 ; ch4 freq 0x7d
+    db %00110000
+    db 117 ; ch4 freq 0x75
+    db %10101000
+    db 0 ; ch4 envelope 0x0
+    
+section "SFX data - Emily ouch",romx
+SFX_EmilyOuch:
+    db %00000111
+    db 192 | $11 ; ch3 vol 0x3 + ch3 wave
+    db 134 ; ch3 freq low 0x86
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 153 ; ch3 freq low 0x99
+    db %00000010
+    db 172 ; ch3 freq low 0xac
+    db %00000010
+    db 191 ; ch3 freq low 0xbf
+    db %00000010
+    db 190 ; ch3 freq low 0xbe
+    db %00000010
+    db 189 ; ch3 freq low 0xbd
+    db %00000010
+    db 188 ; ch3 freq low 0xbc
+    db %00000010
+    db 187 ; ch3 freq low 0xbb
+    db %00000010
+    db 179 ; ch3 freq low 0xb3
+    db %00000010
+    db 171 ; ch3 freq low 0xab
+    db %00000010
+    db 163 ; ch3 freq low 0xa3
+    db %00000010
+    db 155 ; ch3 freq low 0x9b
+    db %10000011
+    db 0 | $10 ; ch3 vol 0x0 + ch3 wave
+

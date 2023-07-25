@@ -27,7 +27,9 @@ if __name__ == "__main__":
     ch3vol = 0
     ch3freqlo = 0
     ch3freqhi = 0
+    ch3freqhiprev = -1
     ch4env = 0
+    ch4envprev = -1
     ch4freq = 0
     ch4reset = 0
     setdelay = 0
@@ -86,8 +88,10 @@ if __name__ == "__main__":
                     ch3freqlo = data
                 elif reg == 0xE: # NR34
                     print("    ch3 freq hi!")
-                    bits[2] = 1
                     ch3freqhi = data & 0x7
+                    if ch3freqhiprev != ch3freqhi:
+                        bits[2] = 1
+                        ch3freqhiprev = ch3freqhi
                 elif reg == 0xF: # NR40 (invalid)
                     print("    ERROR: Writing to invalid register NR40!")
                     exit(1)
@@ -95,8 +99,11 @@ if __name__ == "__main__":
                     pass
                 elif reg == 0x11: # NR42
                     print("    ch4 volume envelope!")
-                    bits[3] = 1
                     ch4env = data
+                    if ch4envprev != ch4env:
+                        bits[3] = 1
+                        bits[5] = 1 # force reset
+                        ch4envprev = ch4env
                 elif reg == 0x12: # NR43
                     print("    ch4 frequency!")
                     bits[4] = 1

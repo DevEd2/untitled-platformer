@@ -9,15 +9,7 @@ TestMapTiles:
     incbin  "GFX/Tilesets/TestTiles.2bpp.wle"
 
 section "Test tileset - Collision map + metatiles",romx
-; Valid collision types:
-; 00 = None
-; 01 = Solid (all sides)
-; 02 = Solid (top only)
-; 03 = Water
-; 04 = Coin
-; 05 = Spring
-; 06 = Spikes
-; 07 = Breakable
+; See Engine/Metatile.asm:8 for a list of valid collision types.
 ColMap_Test:
     db  0,1,0,2,3,3,3,3,3,7,0,0,0,0,0,0
     db  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -77,7 +69,7 @@ BeachTiles:
     incbin  "GFX/Tilesets/BeachTiles.2bpp.wle"
 
 ColMap_Beach:
-    db  0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0
+    db  0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0
     db  0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0
     db  0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0
     db  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
