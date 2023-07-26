@@ -418,3 +418,670 @@ SFX_EmilyOuch:
     db %10000011
     db 0 | $10 ; ch3 vol 0x0 + ch3 wave
 
+section "SFX data - Collectable 1",romx
+SFX_Collectable1:
+    db %00000111
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 225 ; ch3 freq low 0xe1
+    db 7 ; ch3 freq high 0x7
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 219 ; ch3 freq low 0xdb
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 231 ; ch3 freq low 0xe7
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 225 ; ch3 freq low 0xe1
+    db %01000001
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 4
+    db %01000001
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 3
+    db %01000001
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 4
+    db %10000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+
+section "SFX data - Collectable 2",romx
+SFX_Collectable2:
+    db %00000111
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 231 ; ch3 freq low 0xe7
+    db 7 ; ch3 freq high 0x7
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 182 ; ch3 freq low 0xb6
+    db 2
+    db %00000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 182 ; ch3 freq low 0xb6
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 226 ; ch3 freq low 0xe2
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 167 ; ch3 freq low 0xa7
+    db 2
+    db %00000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 144 ; ch3 freq low 0x90
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 237 ; ch3 freq low 0xed
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 2
+    db %00000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 167 ; ch3 freq low 0xa7
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 226 ; ch3 freq low 0xe2
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 167 ; ch3 freq low 0xa7
+    db 2
+    db %00000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 182 ; ch3 freq low 0xb6
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 237 ; ch3 freq low 0xed
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 2
+    db %00000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 226 ; ch3 freq low 0xe2
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 167 ; ch3 freq low 0xa7
+    db 2
+    db %00000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 167 ; ch3 freq low 0xa7
+    db %00000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 237 ; ch3 freq low 0xed
+    db %01000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 2
+    db %00000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db %00000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 226 ; ch3 freq low 0xe2
+    db %01000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 167 ; ch3 freq low 0xa7
+    db 2
+    db %10000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+
+section "SFX data - Collectable 3",romx
+SFX_Collectable3:
+    db %01000111
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 151 ; ch3 freq low 0x97
+    db 7 ; ch3 freq high 0x7
+    db 3
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 45 ; ch3 freq low 0x2d
+    db 2
+    db %01000011
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 151 ; ch3 freq low 0x97
+    db 2
+    db %01000011
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 3
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 2
+    db %01000011
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 3
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 2
+    db %01000011
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 3
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 2
+    db %01000011
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 2
+    db %01000011
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 151 ; ch3 freq low 0x97
+    db 3
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 2
+    db %01000011
+    db 128 | $10 ; ch3 vol 0x2 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 3
+    db %01000011
+    db 128 | $7 ; ch3 vol 0x2 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 2
+    db %01000011
+    db 128 | $10 ; ch3 vol 0x2 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %01000011
+    db 128 | $7 ; ch3 vol 0x2 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 2
+    db %01000011
+    db 128 | $10 ; ch3 vol 0x2 + ch3 wave
+    db 151 ; ch3 freq low 0x97
+    db 3
+    db %01000011
+    db 128 | $7 ; ch3 vol 0x2 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 2
+    db %01000011
+    db 64 | $10 ; ch3 vol 0x1 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 3
+    db %01000011
+    db 64 | $7 ; ch3 vol 0x1 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 2
+    db %01000011
+    db 64 | $10 ; ch3 vol 0x1 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %01000011
+    db 64 | $7 ; ch3 vol 0x1 + ch3 wave
+    db 186 ; ch3 freq low 0xba
+    db 2
+    db %01000011
+    db 64 | $10 ; ch3 vol 0x1 + ch3 wave
+    db 151 ; ch3 freq low 0x97
+    db 3
+    db %01000011
+    db 64 | $7 ; ch3 vol 0x1 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 2
+    db %10000001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+
+section "SFX data - Collectable 4",romx
+SFX_Collectable4:
+        db %01000111
+    db 192 | $10 ; ch3 vol 0x3 + ch3 wave
+    db 131 ; ch3 freq low 0x83
+    db 7 ; ch3 freq high 0x7
+    db 3
+    db %00000001
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db %01000011
+    db 192 | $f ; ch3 vol 0x3 + ch3 wave
+    db 157 ; ch3 freq low 0x9d
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 131 ; ch3 freq low 0x83
+    db %01000011
+    db 192 | $e ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 157 ; ch3 freq low 0x9d
+    db %01000011
+    db 192 | $e ; ch3 vol 0x3 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db %01000011
+    db 192 | $d ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db %01000011
+    db 192 | $c ; ch3 vol 0x3 + ch3 wave
+    db 209 ; ch3 freq low 0xd1
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db %01000011
+    db 192 | $c ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 209 ; ch3 freq low 0xd1
+    db %01000011
+    db 192 | $b ; ch3 vol 0x3 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db %01000011
+    db 192 | $a ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db %01000011
+    db 192 | $a ; ch3 vol 0x3 + ch3 wave
+    db 157 ; ch3 freq low 0x9d
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db %01000011
+    db 192 | $9 ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 157 ; ch3 freq low 0x9d
+    db %01000011
+    db 192 | $8 ; ch3 vol 0x3 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db %01000011
+    db 192 | $8 ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db %01000011
+    db 192 | $7 ; ch3 vol 0x3 + ch3 wave
+    db 209 ; ch3 freq low 0xd1
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db %01000011
+    db 192 | $6 ; ch3 vol 0x3 + ch3 wave
+    db 219 ; ch3 freq low 0xdb
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 209 ; ch3 freq low 0xd1
+    db %01000011
+    db 192 | $6 ; ch3 vol 0x3 + ch3 wave
+    db 225 ; ch3 freq low 0xe1
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 219 ; ch3 freq low 0xdb
+    db %01000011
+    db 192 | $5 ; ch3 vol 0x3 + ch3 wave
+    db 219 ; ch3 freq low 0xdb
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 225 ; ch3 freq low 0xe1
+    db %01000011
+    db 192 | $4 ; ch3 vol 0x3 + ch3 wave
+    db 209 ; ch3 freq low 0xd1
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 219 ; ch3 freq low 0xdb
+    db %01000011
+    db 192 | $4 ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 209 ; ch3 freq low 0xd1
+    db %01000011
+    db 192 | $3 ; ch3 vol 0x3 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db %01000011
+    db 192 | $2 ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db %01000011
+    db 0 | $2 ; ch3 vol 0x0 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db 3
+    db %10000001
+    db 0 | 0
+
+section "SFX data - Emily transform",romx
+SFX_EmilyTransform:
+    db %00000111
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 202 ; ch3 freq low 0xca
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 211 ; ch3 freq low 0xd3
+    db %00000010
+    db 220 ; ch3 freq low 0xdc
+    db %00000010
+    db 229 ; ch3 freq low 0xe5
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 192 ; ch3 freq low 0xc0
+    db %00000010
+    db 202 ; ch3 freq low 0xca
+    db %00000010
+    db 212 ; ch3 freq low 0xd4
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 178 ; ch3 freq low 0xb2
+    db %00000010
+    db 189 ; ch3 freq low 0xbd
+    db %00000010
+    db 200 ; ch3 freq low 0xc8
+    db %00000010
+    db 211 ; ch3 freq low 0xd3
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 163 ; ch3 freq low 0xa3
+    db %00000010
+    db 175 ; ch3 freq low 0xaf
+    db %00000010
+    db 187 ; ch3 freq low 0xbb
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 144 ; ch3 freq low 0x90
+    db %00000010
+    db 157 ; ch3 freq low 0x9d
+    db %00000010
+    db 170 ; ch3 freq low 0xaa
+    db %00000010
+    db 183 ; ch3 freq low 0xb7
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 121 ; ch3 freq low 0x79
+    db %00000010
+    db 135 ; ch3 freq low 0x87
+    db %00000010
+    db 149 ; ch3 freq low 0x95
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 94 ; ch3 freq low 0x5e
+    db %00000010
+    db 109 ; ch3 freq low 0x6d
+    db %00000010
+    db 124 ; ch3 freq low 0x7c
+    db %00000010
+    db 139 ; ch3 freq low 0x8b
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 61 ; ch3 freq low 0x3d
+    db %00000010
+    db 77 ; ch3 freq low 0x4d
+    db %00000010
+    db 93 ; ch3 freq low 0x5d
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 23 ; ch3 freq low 0x17
+    db %00000010
+    db 40 ; ch3 freq low 0x28
+    db %00000010
+    db 57 ; ch3 freq low 0x39
+    db %00000010
+    db 74 ; ch3 freq low 0x4a
+    db %00000111
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 232 ; ch3 freq low 0xe8
+    db 6 ; ch3 freq high 0x6
+    db %00000010
+    db 250 ; ch3 freq low 0xfa
+    db %00000110
+    db 12 ; ch3 freq low 0xc
+    db 7 ; ch3 freq high 0x7
+    db %00000111
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 177 ; ch3 freq low 0xb1
+    db 6 ; ch3 freq high 0x6
+    db %00000010
+    db 196 ; ch3 freq low 0xc4
+    db %00000010
+    db 215 ; ch3 freq low 0xd7
+    db %00000010
+    db 234 ; ch3 freq low 0xea
+    db %00000011
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 111 ; ch3 freq low 0x6f
+    db %00000010
+    db 131 ; ch3 freq low 0x83
+    db %00000010
+    db 151 ; ch3 freq low 0x97
+    db %00000111
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 174 ; ch3 freq low 0xae
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 150 ; ch3 freq low 0x96
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 182 ; ch3 freq low 0xb6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 150 ; ch3 freq low 0x96
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 182 ; ch3 freq low 0xb6
+    db %00000011
+    db 128 | 1 ; ch3 vol 0x2 + ch3 wave
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 150 ; ch3 freq low 0x96
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 182 ; ch3 freq low 0xb6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 150 ; ch3 freq low 0x96
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 182 ; ch3 freq low 0xb6
+    db %00000011
+    db 64 | 1 ; ch3 vol 0x1 + ch3 wave
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 150 ; ch3 freq low 0x96
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 182 ; ch3 freq low 0xb6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 150 ; ch3 freq low 0x96
+    db %00000010
+    db 158 ; ch3 freq low 0x9e
+    db %00000010
+    db 166 ; ch3 freq low 0xa6
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 182 ; ch3 freq low 0xb6
+    db %10000001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+
+section "SFX data - Emily detransform",romx
+SFX_EmilyDetransform:
+    db %00000111
+    db 192 | $11 ; ch3 vol 0x3 + ch3 wave
+    db 159 ; ch3 freq low 0x9f
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 189 ; ch3 freq low 0xbd
+    db %00000010
+    db 174 ; ch3 freq low 0xae
+    db %00000010
+    db 159 ; ch3 freq low 0x9f
+    db %00000010
+    db 144 ; ch3 freq low 0x90
+    db %00000010
+    db 129 ; ch3 freq low 0x81
+    db %00000010
+    db 114 ; ch3 freq low 0x72
+    db %00000010
+    db 99 ; ch3 freq low 0x63
+    db %00000010
+    db 84 ; ch3 freq low 0x54
+    db %01000011
+    db 192 | $d ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 89 ; ch3 freq low 0x59
+    db 2
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 144 ; ch3 freq low 0x90
+    db 3
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 2
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 3
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 144 ; ch3 freq low 0x90
+    db 2
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db 3
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 172 ; ch3 freq low 0xac
+    db 2
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 200 ; ch3 freq low 0xc8
+    db 3
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 190 ; ch3 freq low 0xbe
+    db 2
+    db %01000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 214 ; ch3 freq low 0xd6
+    db 3
+    db %01000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 214 ; ch3 freq low 0xd6
+    db 2
+    db %01000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 214 ; ch3 freq low 0xd6
+    db 3
+    db %01000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 214 ; ch3 freq low 0xd6
+    db 2
+    db %01000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 214 ; ch3 freq low 0xd6
+    db 3
+    db %10000001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wav

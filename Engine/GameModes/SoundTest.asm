@@ -182,9 +182,15 @@ SoundTestLoop:
 
 SoundTest_MusicPointers:
     dw      Mus_Intro
+;    dw      Mus_Menu 
+;    dw      Mus_Hub 
+;    dw      Mus_Beach 
+;    dw      Mus_Escape
+;    dw      Mus_StageClear
+;    dw      Mus_Credits 
 
 SoundTest_SFXPointers:
-    bankptr SFX_Test
+;    bankptr SFX_Test
     bankptr SFX_Jump
     bankptr SFX_DashLoop
     bankptr SFX_Skid
@@ -192,6 +198,29 @@ SoundTest_SFXPointers:
     bankptr SFX_EnemyKill
     bankptr SFX_BlockBreak
     bankptr SFX_EmilyOuch
+    bankptr SFX_Collectable1
+    bankptr SFX_Collectable2
+    bankptr SFX_Collectable3
+    bankptr SFX_Collectable4
+    bankptr SFX_EmilyTransform
+    bankptr SFX_EmilyDetransform
+;    bankptr SFX_EmilyWerewolfHowl
+;    bankptr SFX_EnemyThrow
+;    bankptr SFX_EmilyCoffeeSteam
+;    bankptr SFX_EmilyCoffeeRun
+;    bankptr SFX_EmilyCoffeeBump
+;    bankptr SFX_EnemyStun
+;    bankptr SFX_EnemyBump
+;    bankptr SFX_MegatonWalk
+;    bankptr SFX_MegatonLand
+;    bankptr SFX_MegatonJump
+;    bankptr SFX_MegatonSlam
+;    bankptr SFX_EmilyBubble
+;    bankptr SFX_EmilySwim
+;    bankptr SFX_EmilyCrabWalk
+;    bankptr SFX_EmilyCrabAttack
+;    bankptr SFX_EmilyThrowCharge
+
     
 section "Sound test text",romx
 

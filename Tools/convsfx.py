@@ -44,6 +44,8 @@ if __name__ == "__main__":
             infile.seek((struct.unpack('<L',infile.read(4))[0]),1)
             outfile.write("\nsfx" + str(sfx) + ":")
             sfx += 1
+            ch3freqhiprev = -1
+            ch4envprev = -1
         else:
             infile.seek(temppos)
         cmd = ord(infile.read(1))
