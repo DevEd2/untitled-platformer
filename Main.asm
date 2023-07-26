@@ -624,8 +624,6 @@ include "Engine/PerFade.asm"    ; Palette routines
 ; TRASHES: a, bc, hl
 ; RESTRICTIONS: Requires the LCD to be disabled, otherwise screen will not be properly cleared.
 ClearScreen:
-    xor     a
-    ldh     [rHDMA5],a  ; cancel pending HDMA transfers (do this before actually clearing VRAM)
     ; clear VRAM bank 0
     xor     a
     ldh     [rVBK],a
@@ -667,8 +665,6 @@ ClearScreen:
 
 ; Same as ClearScreen, but preserves loaded graphics.
 ClearScreen2:
-    xor     a
-    ldh     [rHDMA5],a  ; cancel pending HDMA transfers (do this before actually clearing VRAM)
     ; clear VRAM bank 0
     xor     a
     ldh     [rVBK],a

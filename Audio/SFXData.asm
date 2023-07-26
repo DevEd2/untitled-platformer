@@ -1,41 +1,40 @@
-section "SFX - Test",romx
-
-SFX_Test:
-    db  1<<DSFX_CH3WAVEVOL | 1<<DSFX_CH3FREQLO | 1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  %11000000 | 1
-    db  $00
-    db  $00
-    db  4
-    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  $01
-    db  4
-    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  $02
-    db  4
-    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  $03
-    db  4
-    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  $04
-    db  4
-    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  $05
-    db  4
-    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  $06
-    db  4
-    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
-    db  $07
-    db  4
-    db  1<<DSFX_CH3WAVEVOL | 1<<DSFX_CH4ENV | 1<<DSFX_CH4FREQ | 1<<DSFX_CH4RESET | 1<<DSFX_DELAY
-    db  %00000000
-    db  $f1
-    db  $56
-    db  4
-    db  1<<DSFX_CH4FREQ | 1<<DSFX_CH4RESET | 1<<DSFX_DELAY
-    db  $69
-    db  4
-    db  1<<DSFX_END
+;section "SFX - Test",romx
+;SFX_Test:
+;    db  1<<DSFX_CH3WAVEVOL | 1<<DSFX_CH3FREQLO | 1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  %11000000 | 1
+;    db  $00
+;    db  $00
+;    db  4
+;    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  $01
+;    db  4
+;    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  $02
+;    db  4
+;    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  $03
+;    db  4
+;    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  $04
+;    db  4
+;    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  $05
+;    db  4
+;    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  $06
+;    db  4
+;    db  1<<DSFX_CH3FREQHI | 1<<DSFX_DELAY
+;    db  $07
+;    db  4
+;    db  1<<DSFX_CH3WAVEVOL | 1<<DSFX_CH4ENV | 1<<DSFX_CH4FREQ | 1<<DSFX_CH4RESET | 1<<DSFX_DELAY
+;    db  %00000000
+;    db  $f1
+;    db  $56
+;    db  4
+;    db  1<<DSFX_CH4FREQ | 1<<DSFX_CH4RESET | 1<<DSFX_DELAY
+;    db  $69
+;    db  4
+;    db  1<<DSFX_END
 
 section "SFX - Jump",romx
 SFX_Jump:
@@ -1085,3 +1084,283 @@ SFX_EmilyDetransform:
     db 3
     db %10000001
     db 0 | 0 ; ch3 vol 0x0 + ch3 wav
+
+section "SFX data - Emily werewolf howl",romx
+SFX_EmilyWerewolfHowl:
+    db %00000111
+    db 192 | $11 ; ch3 vol 0x3 + ch3 wave
+    db 110 ; ch3 freq low 0x6e
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 113 ; ch3 freq low 0x71
+    db %00000010
+    db 116 ; ch3 freq low 0x74
+    db %00000010
+    db 119 ; ch3 freq low 0x77
+    db %00000010
+    db 122 ; ch3 freq low 0x7a
+    db %00000010
+    db 127 ; ch3 freq low 0x7f
+    db %00000010
+    db 132 ; ch3 freq low 0x84
+    db %00000010
+    db 137 ; ch3 freq low 0x89
+    db %00000010
+    db 142 ; ch3 freq low 0x8e
+    db %00000010
+    db 147 ; ch3 freq low 0x93
+    db %00000010
+    db 152 ; ch3 freq low 0x98
+    db %00000010
+    db 157 ; ch3 freq low 0x9d
+    db %01000010
+    db 162 ; ch3 freq low 0xa2
+    db 23
+    db %01000010
+    db 161 ; ch3 freq low 0xa1
+    db 5
+    db %01000010
+    db 160 ; ch3 freq low 0xa0
+    db 5
+    db %01000010
+    db 159 ; ch3 freq low 0x9f
+    db 5
+    db %01000010
+    db 158 ; ch3 freq low 0x9e
+    db 5
+    db %01000010
+    db 157 ; ch3 freq low 0x9d
+    db 5
+    db %01000010
+    db 156 ; ch3 freq low 0x9c
+    db 5
+    db %01000010
+    db 155 ; ch3 freq low 0x9b
+    db 5
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 155 ; ch3 freq low 0x9b
+    db %00000010
+    db 153 ; ch3 freq low 0x99
+    db %00000010
+    db 151 ; ch3 freq low 0x97
+    db %00000010
+    db 149 ; ch3 freq low 0x95
+    db %00000010
+    db 147 ; ch3 freq low 0x93
+    db %00000010
+    db 145 ; ch3 freq low 0x91
+    db %00000010
+    db 143 ; ch3 freq low 0x8f
+    db %00000010
+    db 141 ; ch3 freq low 0x8d
+    db %00000010
+    db 139 ; ch3 freq low 0x8b
+    db %00000010
+    db 137 ; ch3 freq low 0x89
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 155 ; ch3 freq low 0x9b
+    db %00000010
+    db 153 ; ch3 freq low 0x99
+    db %00000010
+    db 151 ; ch3 freq low 0x97
+    db %00000010
+    db 149 ; ch3 freq low 0x95
+    db %00000010
+    db 147 ; ch3 freq low 0x93
+    db %00000010
+    db 145 ; ch3 freq low 0x91
+    db %00000010
+    db 143 ; ch3 freq low 0x8f
+    db %00000010
+    db 141 ; ch3 freq low 0x8d
+    db %00000010
+    db 139 ; ch3 freq low 0x8b
+    db %00000010
+    db 137 ; ch3 freq low 0x89
+    db %00000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 155 ; ch3 freq low 0x9b
+    db %00000010
+    db 153 ; ch3 freq low 0x99
+    db %00000010
+    db 151 ; ch3 freq low 0x97
+    db %00000010
+    db 149 ; ch3 freq low 0x95
+    db %00000010
+    db 147 ; ch3 freq low 0x93
+    db %00000010
+    db 145 ; ch3 freq low 0x91
+    db %00000010
+    db 143 ; ch3 freq low 0x8f
+    db %00000010
+    db 141 ; ch3 freq low 0x8d
+    db %00000010
+    db 139 ; ch3 freq low 0x8b
+    db %00000010
+    db 137 ; ch3 freq low 0x89
+    db %10000001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+
+section "SFX data - Throwing object",romx
+SFX_EnemyThrow:
+    db %00000111
+    db 128 | 1 ; ch3 vol 0x2 + ch3 wave
+    db 147 ; ch3 freq low 0x93
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 163 ; ch3 freq low 0xa3
+    db %00000010
+    db 179 ; ch3 freq low 0xb3
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 195 ; ch3 freq low 0xc3
+    db %00000010
+    db 211 ; ch3 freq low 0xd3
+    db %00000010
+    db 209 ; ch3 freq low 0xd1
+    db %00000010
+    db 207 ; ch3 freq low 0xcf
+    db %00000010
+    db 205 ; ch3 freq low 0xcd
+    db %00000010
+    db 203 ; ch3 freq low 0xcb
+    db %00000010
+    db 201 ; ch3 freq low 0xc9
+    db %00000010
+    db 199 ; ch3 freq low 0xc7
+    db %00000010
+    db 197 ; ch3 freq low 0xc5
+    db %00000010
+    db 195 ; ch3 freq low 0xc3
+    db %00000010
+    db 193 ; ch3 freq low 0xc1
+    db %00000010
+    db 191 ; ch3 freq low 0xbf
+    db %00000010
+    db 189 ; ch3 freq low 0xbd
+    db %00000010
+    db 187 ; ch3 freq low 0xbb
+    db %00000010
+    db 185 ; ch3 freq low 0xb9
+    db %00000011
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 183 ; ch3 freq low 0xb7
+    db %00000010
+    db 181 ; ch3 freq low 0xb5
+    db %00000011
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 179 ; ch3 freq low 0xb3
+    db %00000010
+    db 177 ; ch3 freq low 0xb1
+    db %00000010
+    db 175 ; ch3 freq low 0xaf
+    db %10000001
+    db 0 | 0  ; ch3 vol 0x0 + ch3 wave
+
+section "SFX data - Emily coffee steam whistle",romx
+SFX_EmilyCoffeeSteam:
+    db %00111111
+    db 128 | 1 ; ch3 vol 0x2 + ch3 wave
+    db 191 ; ch3 freq low 0xbf
+    db 7 ; ch3 freq high 0x7
+    db 128 ; ch4 envelope 0x80
+    db 1 ; ch4 freq 0x1
+    db %00000010
+    db 192 ; ch3 freq low 0xc0
+    db %00000010
+    db 193 ; ch3 freq low 0xc1
+    db %00111011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 194 ; ch3 freq low 0xc2
+    db 208 ; ch4 envelope 0xd0
+    db 1 ; ch4 freq 0x1
+    db %00000010
+    db 195 ; ch3 freq low 0xc3
+    db %00000010
+    db 196 ; ch3 freq low 0xc4
+    db %00000010
+    db 197 ; ch3 freq low 0xc5
+    db %00000010
+    db 198 ; ch3 freq low 0xc6
+    db %00000010
+    db 199 ; ch3 freq low 0xc7
+    db %00000010
+    db 200 ; ch3 freq low 0xc8
+    db %00111010
+    db 201 ; ch3 freq low 0xc9
+    db 176 ; ch4 envelope 0xb0
+    db 1 ; ch4 freq 0x1
+    db %00000010
+    db 202 ; ch3 freq low 0xca
+    db %00000010
+    db 203 ; ch3 freq low 0xcb
+    db %00000010
+    db 204 ; ch3 freq low 0xcc
+    db %00000010
+    db 205 ; ch3 freq low 0xcd
+    db %01111000
+    db 144 ; ch4 envelope 0x90
+    db 1 ; ch4 freq 0x1
+    db 15
+    db %01000001
+    db 128 | 0 ; ch3 vol 0x2 + ch3 wave
+    db 8
+    db %01000001
+    db 64 | 0 ; ch3 vol 0x1 + ch3 wave
+    db 2
+    db %10101001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 8 ; ch4 envelope 0x8
+
+section "SFX - Emily coffee run",romx
+SFX_EmilyCoffeeRun:
+    db %00000111
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 165 ; ch3 freq low 0xa5
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 173 ; ch3 freq low 0xad
+    db %00000010
+    db 181 ; ch3 freq low 0xb5
+    db %00000011
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    db 189 ; ch3 freq low 0xbd
+    db %00000010
+    db 197 ; ch3 freq low 0xc5
+    db %00000011
+    db 192 | 0 ; ch3 vol 0x3 + ch3 wave
+    db 198 ; ch3 freq low 0xc6
+    db %00000010
+    db 206 ; ch3 freq low 0xce
+    db %00000010
+    db 214 ; ch3 freq low 0xd6
+    db %10000001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+
+section "SFX data - Emily coffee bump into wall",romx
+SFX_EmilyCoffeeBump:
+    db %00000111
+    db 192 | 1 ; ch3 vol 0x3 + ch3 wave
+    db 97 ; ch3 freq low 0x61
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 1 ; ch3 freq low 0x1
+    db %00000110
+    db 161 ; ch3 freq low 0xa1
+    db 6 ; ch3 freq high 0x6
+    db %00000010
+    db 209 ; ch3 freq low 0xd1
+    db %00000110
+    db 1 ; ch3 freq low 0x1
+    db 7 ; ch3 freq high 0x7
+    db %00000010
+    db 49 ; ch3 freq low 0x31
+    db %00000010
+    db 97 ; ch3 freq low 0x61
+    db %00000010
+    db 145 ; ch3 freq low 0x91
+    db %10000001
+    db 0 | 0 ; ch3 vol 0x0 + ch3 wave
+    

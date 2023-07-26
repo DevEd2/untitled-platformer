@@ -204,11 +204,11 @@ SoundTest_SFXPointers:
     bankptr SFX_Collectable4
     bankptr SFX_EmilyTransform
     bankptr SFX_EmilyDetransform
-;    bankptr SFX_EmilyWerewolfHowl
-;    bankptr SFX_EnemyThrow
-;    bankptr SFX_EmilyCoffeeSteam
-;    bankptr SFX_EmilyCoffeeRun
-;    bankptr SFX_EmilyCoffeeBump
+    bankptr SFX_EmilyWerewolfHowl
+    bankptr SFX_EnemyThrow
+    bankptr SFX_EmilyCoffeeSteam
+    bankptr SFX_EmilyCoffeeRun
+    bankptr SFX_EmilyCoffeeBump
 ;    bankptr SFX_EnemyStun
 ;    bankptr SFX_EnemyBump
 ;    bankptr SFX_MegatonWalk
@@ -220,6 +220,7 @@ SoundTest_SFXPointers:
 ;    bankptr SFX_EmilyCrabWalk
 ;    bankptr SFX_EmilyCrabAttack
 ;    bankptr SFX_EmilyThrowCharge
+;    bankptr SFX_Poof
 
     
 section "Sound test text",romx
