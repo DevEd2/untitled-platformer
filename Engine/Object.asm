@@ -148,18 +148,18 @@ ObjectInit:
 ; Format: Bank, Pointer
 section "Object Tile Pointers",romx
 ObjectGraphics:
-    mgraphic    bank(PlayerTiles),PlayerTiles       ; MOSNTER_TEST
+    mgraphic    bank(GoonyTiles),GoonyTiles         ; MOSNTER_TEST
     mgraphic    bank(GoonyTiles),GoonyTiles         ; MONSTER_TEST2
     mgraphic    bank(OneUpTiles),OneUpTiles         ; COLLECTABLE_1UP
     mgraphic    bank(FishTiles),FishTiles           ; MONSTER_FISH_LR
     mgraphic    bank(FishTiles),FishTiles           ; MONSTER_FISH_UD
     mgraphic    bank(FishTiles),FishTiles           ; MONSTER_FISH_CIRC
     
-    mgraphic    bank(PlayerTiles),PlayerTiles       ; MONSTER_LOG
-    mgraphic    bank(PlayerTiles),PlayerTiles       ; MONSTER_LOG_BOUNCING
-    mgraphic    bank(PlayerTiles),PlayerTiles       ; MONSTER_LOG_SPAWNER
+    mgraphic    bank(GoonyTiles),GoonyTiles         ; MONSTER_LOG
+    mgraphic    bank(GoonyTiles),GoonyTiles         ; MONSTER_LOG_BOUNCING
+    mgraphic    bank(GoonyTiles),GoonyTiles         ; MONSTER_LOG_SPAWNER
 	
-    mgraphic    bank(MoneybagTiles),MoneybagTiles       ; COLLECTABLE_MONEYBAG
+    mgraphic    bank(MoneybagTiles),MoneybagTiles   ; COLLECTABLE_MONEYBAG
     
 ; Object animations
 section "Object Animation Data",romx

@@ -68,6 +68,7 @@ DSFX_END        = 7
 
 section "DevSFX routines",rom0
 
+; Play a high-priority sound effect.
 ; INPUT: hl = pointer
 ;         b = bank
 DSFX_PlaySFX:
@@ -85,6 +86,9 @@ DSFX_PlaySFX:
     ld      [DSFX_Pointer1+1],a
     ret
 
+; Play a low-priority sound effect.
+; INPUT: hl = pointer
+;         b = bank
 DSFX_PlaySFX2:
     ld      a,b
     ld      [DSFX_Bank2],a

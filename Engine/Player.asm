@@ -2011,7 +2011,7 @@ AnimatePlayer:
 
 PLAYER_NUM_SPRITES = 0
 
-macro def_sprite
+macro defsprite
 section fragment "Player sprite graphics - \1",romx
 SpriteGFX_Player_\1:
     dw SpriteGFX_Player_\1_Start
@@ -2052,23 +2052,47 @@ SpriteNamePointers:
 endc
 
 section "Player GFX",romx,align[8]
-PlayerTiles:
+PlayerSprites:
     const_def
-    def_sprite Idle1
-    def_sprite Idle2
-    def_sprite Idle3
-    def_sprite Idle4
-    def_sprite Idle5
-    def_sprite Idle6
-    def_sprite Idle7
-    def_sprite Idle8
-    def_sprite Run1
-    def_sprite Run2
-    def_sprite Run3
-    def_sprite Run4
-    def_sprite Run5
-    def_sprite Run6
-    def_sprite Run7
-    def_sprite Run8
+    defsprite Idle1
+    defsprite Idle2
+    defsprite Idle3
+    defsprite Idle4
+    defsprite Idle5
+    defsprite Idle6
+    defsprite Idle7
+    defsprite Idle8
+    defsprite Run1
+    defsprite Run2
+    defsprite Run3
+    defsprite Run4
+    defsprite Run5
+    defsprite Run6
+    defsprite Run7
+    defsprite Run8
+;    defsprite Dash1
+;    defsprite Dash2
+;    defsprite Dash3
+;    defsprite Dash4
+    defsprite IdleEscape1
+    defsprite IdleEscape2
+    defsprite IdleEscape3
+    defsprite IdleEscape4
+    defsprite CoffeeSteam1
+    defsprite CoffeeSteam2
+    defsprite CoffeeSteam3
+    defsprite CoffeeSteam4
+    defsprite CoffeeSteam5
+;    defsprite CoffeeRun1
+;    defsprite CoffeeRun2
+;    defsprite CrabIdle
+;    defsprite CrabWalk
+;    defsprite CrabAttack
+;    defsprite LamiaIdle
+;    defsprite LamiaSlither
+;    defsprite LamiaJump
+;    defsprite LamiaAttack
+;    defsprite LamiaClimb
+    
 
 ; ================================
