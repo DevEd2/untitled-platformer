@@ -930,7 +930,7 @@ ProcessPlayer:
     ; Push player out of tile
     add     c
     ld      [Player_YPos],a
-    jr      .yCollideEnd
+    jp      .yCollideEnd
 .bottomCollision:
     ; Check Bottom Collision
     ld      a,[Player_YPos]
@@ -999,9 +999,27 @@ ProcessPlayer:
     ld      [Player_YVelocityS],a
     ; Reset airborne flag
     ld      a,[Player_MovementFlags2]
+    bit     bPlayerIsAirborne,a
+    jr      z,.yCollideEnd
+    ld      e,a
+    xor     a
+    ld      [Player_AnimLock],a
+    ld      b,b
+    ld      a,[Player_XVelocity]
+    and     a
+    jr      z,:++
+    bit     bPlayerDashMaxSpeed,e
+    jr      z,:+
+    ld      hl,Anim_Player_Run ; TODO: Replace with actual dash animation
+    jr      .setlandanim
+:   ld      hl,Anim_Player_Run
+    jr      .setlandanim
+:   ld      hl,Anim_Player_Idle    
+.setlandanim
+    call    Player_SetAnimation
+.skiplandanim
     res     bPlayerIsAirborne,a
     ld      [Player_MovementFlags2],a
-    ; call    Player_Jump
 .yCollideEnd:
     ld      a,[Player_YVelocity]
     and     a
@@ -1010,6 +1028,10 @@ ProcessPlayer:
     bit     bPlayerIsAirborne,[hl]
     jr      nz,:+
     set     bPlayerIsAirborne,[hl]
+    ld      hl,Anim_Player_Fall
+    call    Player_SetAnimation
+    ld      a,1
+    ld      [Player_AnimLock],a
 :   ld      a,[Player_XVelocity]
     bit     7,a
     jr      z,:+
@@ -1052,6 +1074,10 @@ Player_Jump:
     ld      [Player_MovementFlags2],a
     
     PlaySFX Jump
+    ld      hl,Anim_Player_Jump
+    call    Player_SetAnimation
+    ld      a,1
+    ld      [Player_AnimLock],a
     
     ld      a,[Player_LastJumpY]
     add     7
@@ -1901,6 +1927,7 @@ Player_SetAnimation:
     ld      a,[Player_AnimLock]
     and     a
     ret     nz
+Player_SetAnimationForce: ; call this to skip animation lock check
     ld      a,l
     ld      [Player_AnimPointer],a
     ld      a,h
@@ -1918,10 +1945,10 @@ AnimatePlayer:
     ret     nz  ; return if anim timer > 0
 
     ; get anim pointer
-    ld      a,[Player_AnimPointer]
+    ld      hl,Player_AnimPointer
+    ld      a,[hl+]
+    ld      h,[hl]
     ld      l,a
-    ld      a,[Player_AnimPointer+1]
-    ld      h,a
     
     ; get frame / command number
 .getEntry
@@ -2010,6 +2037,17 @@ AnimatePlayer:
    db   F_Player_Run8,C_AnimSpeed,low(Player_RunAnimSpeed),high(Player_RunAnimSpeed)
    dbw  C_SetAnim,Anim_Player_Run
    
+   defanim Player_Jump
+   db   F_Player_Jump,99
+   dbw  C_SetAnim,Anim_Player_Jump
+   
+   defanim Player_Fall
+   db   F_Player_Fall1,4
+   db   F_Player_Fall2,4
+:  db   F_Player_Fall3,4
+   db   F_Player_Fall4,4
+   dbw  C_SetAnim,:-
+   
    defanim Player_IdleEscape
    db   F_Player_IdleEscape1,4
    db   F_Player_IdleEscape2,4
@@ -2092,11 +2130,11 @@ PlayerSprites:
     defsprite Run6
     defsprite Run7
     defsprite Run8
-;    defsprite Jump
-;    defsprite Fall1
-;    defsprite Fall2
-;    defsprite Fall3
-;    defsprite Fall4
+    defsprite Jump
+    defsprite Fall1
+    defsprite Fall2
+    defsprite Fall3
+    defsprite Fall4
 ;    defsprite Dash1
 ;    defsprite Dash2
 ;    defsprite Dash3
