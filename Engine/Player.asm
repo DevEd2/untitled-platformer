@@ -69,7 +69,7 @@ Player_SpringStrength       = -$750
 
 ; Player_MovementFlags defines
 
-bPlayerIsMoving             = 0
+bPlayerAccelerating             = 0
 bPlayerIsUnderwater         = 1
 bPlayerIsDead               = 2
 bPlayerMaxSpeed             = 3
@@ -85,6 +85,7 @@ bPlayerDashMaxSpeed         = 2
 bPlayerDashStun             = 3
 bPlayerIsDucking            = 4
 bPlayerDashSkid             = 5
+bPlayerIsMoving             = 6
 
 ; ========================
 ; Player animation defines
@@ -222,6 +223,9 @@ ProcessPlayer:
     ld      a,c
     or      e
     ld      d,a
+    
+    ld      hl,Player_MovementFlags2
+    set     bPlayerIsMoving,[hl]
     
 .noaccel
     res     1,d
@@ -372,9 +376,9 @@ ProcessPlayer:
     bit     7,h
     jr      nz,:++   ; reset X speed to zero on overflow
 :   ld      hl,0
-    ld      a,[Player_MovementFlags]
+    ld      a,[Player_MovementFlags2]
     bit     bPlayerIsMoving,a
-    jr      nz,:+
+    jr      z,:+
     push    af
     push    hl
     ld      hl,Anim_Player_Idle
@@ -382,7 +386,7 @@ ProcessPlayer:
     pop     hl
     pop     af
     res     bPlayerIsMoving,a
-    ld      [Player_MovementFlags],a
+    ld      [Player_MovementFlags2],a
 :   ld      a,h
     ld      [Player_XVelocity],a
     ld      a,l
@@ -407,9 +411,9 @@ ProcessPlayer:
     bit     7,h
     jr      z,:++    ; reset X speed to zero on overflow
 :   ld      hl,0
-    ld      a,[Player_MovementFlags]
+    ld      a,[Player_MovementFlags2]
     bit     bPlayerIsMoving,a
-    jr      nz,:+
+    jr      z,:+
     push    af
     push    hl
     ld      hl,Anim_Player_Idle
@@ -417,7 +421,7 @@ ProcessPlayer:
     pop     hl
     pop     af
     res     bPlayerIsMoving,a
-    ld      [Player_MovementFlags],a
+    ld      [Player_MovementFlags2],a
 :   ld      a,h
     ld      [Player_XVelocity],a
     ld      a,l
@@ -1189,11 +1193,11 @@ Player_GetSpeedCapR2:
 
 Player_AccelerateLeft:
     ld      a,[Player_MovementFlags]
-    bit     bPlayerIsMoving,a
+    bit     bPlayerAccelerating,a
     jr      nz,:+
     ld      hl,Anim_Player_Run
     call    Player_SetAnimation
-    set     bPlayerIsMoving,a
+    set     bPlayerAccelerating,a
 :   res     bPlayerMaxSpeed,a
     ld      [Player_MovementFlags],a
     bit     bPlayerIsUnderwater,a
@@ -1291,11 +1295,11 @@ Player_AccelerateLeft:
 
 Player_AccelerateRight:
     ld      a,[Player_MovementFlags]
-    bit     bPlayerIsMoving,a
+    bit     bPlayerAccelerating,a
     jr      nz,:+
     ld      hl,Anim_Player_Run
     call    Player_SetAnimation
-    set     bPlayerIsMoving,a
+    set     bPlayerAccelerating,a
 :   res     bPlayerMaxSpeed,a
     ld      [Player_MovementFlags],a
     bit     bPlayerIsUnderwater,a
@@ -1875,8 +1879,7 @@ Player_CheckSubscreenBoundary:
 ; ===================
 
 C_SetAnim       = $80
-C_ToggleLock    = $81
- C_AnimSpeed     = $ff
+C_ToggleLock    = $81C_AnimSpeed     = $ff
 
 ; ================
 ; Animation macros
@@ -2007,6 +2010,25 @@ AnimatePlayer:
    db   F_Player_Run8,C_AnimSpeed,low(Player_RunAnimSpeed),high(Player_RunAnimSpeed)
    dbw  C_SetAnim,Anim_Player_Run
    
+   defanim Player_IdleEscape
+   db   F_Player_IdleEscape1,4
+   db   F_Player_IdleEscape2,4
+   db   F_Player_IdleEscape3,4
+   db   F_Player_IdleEscape2,4
+   db   F_Player_IdleEscape1,4
+   db   F_Player_IdleEscape2,4
+   db   F_Player_IdleEscape4,4
+   db   F_Player_IdleEscape2,4
+   dbw  C_SetAnim,Anim_Player_IdleEscape
+   
+   defanim Player_CoffeeSteam
+   db   F_Player_CoffeeSteam1,2
+   db   F_Player_CoffeeSteam2,2
+   db   F_Player_CoffeeSteam3,2
+   db   F_Player_CoffeeSteam4,2
+   db   F_Player_CoffeeSteam5,2
+   dbw  C_SetAnim,Anim_Player_IdleEscape
+   
 ; ================================
 
 PLAYER_NUM_SPRITES = 0
@@ -2070,6 +2092,11 @@ PlayerSprites:
     defsprite Run6
     defsprite Run7
     defsprite Run8
+;    defsprite Jump
+;    defsprite Fall1
+;    defsprite Fall2
+;    defsprite Fall3
+;    defsprite Fall4
 ;    defsprite Dash1
 ;    defsprite Dash2
 ;    defsprite Dash3
@@ -2093,6 +2120,28 @@ PlayerSprites:
 ;    defsprite LamiaJump
 ;    defsprite LamiaAttack
 ;    defsprite LamiaClimb
+;    defsprite WerewolfIdle1
+;    defsprite WerewolfIdle2
+;    defsprite WerewolfIdle3
+;    defsprite WerewolfIdle4
+;    defsprite WerewolfIdle5
+;    defsprite WerewolfIdle6
+;    defsprite WerewolfIdle7
+;    defsprite WerewolfIdle8
+;    defsprite WerewolfWalk1
+;    defsprite WerewolfWalk2
+;    defsprite WerewolfWalk3
+;    defsprite WerewolfWalk4
+;    defsprite WerewolfWalk5
+;    defsprite WerewolfWalk6
+;    defsprite WerewolfWalk7
+;    defsprite WerewolfWalk8
+;    defsprite WerewolfDash1
+;    defsprite WerewolfDash2
+;    defsprite WerewolfDash3
+;    defsprite WerewolfDash4
+;    defsprite WerewolfJump
+;    defsprite WerewolfFall
     
 
 ; ================================

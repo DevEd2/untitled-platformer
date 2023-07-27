@@ -182,7 +182,7 @@ SoundTestLoop:
 
 SoundTest_MusicPointers:
     dw      Mus_Intro
-;    dw      Mus_Menu 
+;    dw      Mus_Menu
 ;    dw      Mus_Hub 
 ;    dw      Mus_Beach 
 ;    dw      Mus_Escape
