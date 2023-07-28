@@ -19,6 +19,7 @@ Player_YVelocity::          db  ; current Y velocity
 Player_YVelocityS::         db  ; current Y fractional velocity
 Player_LastJumpY::          db  ; last Jump Y position (absolute)
 Player_AnimPointer::        dw  ; pointer to current animation sequence
+Player_CurrentAnimPointer:: dw  ; pointer to start of current animation sequence 
 Player_AnimTimer::          db  ; time until next animation frame is displayed (if -1, frame will be displayed indefinitely)
 Player_AnimLock::           db  ; if 1, current animation cannot be interrupted
 Player_CurrentFrame::       db  ; current animation frame being displayed
@@ -1004,13 +1005,12 @@ ProcessPlayer:
     ld      e,a
     xor     a
     ld      [Player_AnimLock],a
-    ld      b,b
     ld      a,[Player_XVelocity]
     and     a
     jr      z,:++
     bit     bPlayerDashMaxSpeed,e
     jr      z,:+
-    ld      hl,Anim_Player_Run ; TODO: Replace with actual dash animation
+    ld      hl,Anim_Player_Dash
     jr      .setlandanim
 :   ld      hl,Anim_Player_Run
     jr      .setlandanim
@@ -1028,6 +1028,8 @@ ProcessPlayer:
     bit     bPlayerIsAirborne,[hl]
     jr      nz,:+
     set     bPlayerIsAirborne,[hl]
+    bit     bPlayerDashMaxSpeed,[hl]
+    jr      z,:+
     ld      hl,Anim_Player_Fall
     call    Player_SetAnimation
     ld      a,1
@@ -1074,12 +1076,13 @@ Player_Jump:
     ld      [Player_MovementFlags2],a
     
     PlaySFX Jump
+    bit     bPlayerDashMaxSpeed,a
+    jr      z,:+
     ld      hl,Anim_Player_Jump
     call    Player_SetAnimation
     ld      a,1
     ld      [Player_AnimLock],a
-    
-    ld      a,[Player_LastJumpY]
+:   ld      a,[Player_LastJumpY]
     add     7
     ld      b,a
     ld      a,[Player_YPos]
@@ -1224,7 +1227,7 @@ Player_AccelerateLeft:
     ld      hl,Anim_Player_Run
     call    Player_SetAnimation
     set     bPlayerAccelerating,a
-:   res     bPlayerMaxSpeed,a
+:   ;res     bPlayerMaxSpeed,a
     ld      [Player_MovementFlags],a
     bit     bPlayerIsUnderwater,a
     jp      nz,.accelLeftWater
@@ -1251,11 +1254,11 @@ Player_AccelerateLeft:
     jr      c,:++
     ld      hl,Player_MovementFlags
     set     bPlayerMaxSpeed,[hl]
-;    ld      hl,Anim_Player_Left2
-;    call    Player_SetAnimation
     ld      hl,Player_MovementFlags2
     bit     bPlayerIsDashing,[hl]
     jr      z,:+
+    ld      hl,Anim_Player_Dash
+    call    Player_SetAnimation
     ld      hl,Player_MovementFlags2
     set     bPlayerDashMaxSpeed,[hl]
     ld      a,[Player_DashSoundTimer]
@@ -1326,7 +1329,7 @@ Player_AccelerateRight:
     ld      hl,Anim_Player_Run
     call    Player_SetAnimation
     set     bPlayerAccelerating,a
-:   res     bPlayerMaxSpeed,a
+:   ;res     bPlayerMaxSpeed,a
     ld      [Player_MovementFlags],a
     bit     bPlayerIsUnderwater,a
     jp      nz,.accelRightWater
@@ -1354,11 +1357,11 @@ Player_AccelerateRight:
     ld      a,[Player_MovementFlags]
     set     bPlayerMaxSpeed,a
     ld      [Player_MovementFlags],a
-;    ld      hl,Anim_Player_Right2
-;    call    Player_SetAnimation
     ld      hl,Player_MovementFlags2
     bit     bPlayerIsDashing,[hl]
     jr      z,:+
+    ld      hl,Anim_Player_Dash
+    call    Player_SetAnimation
     ld      hl,Player_MovementFlags2
     set     bPlayerDashMaxSpeed,[hl]
     ld      a,[Player_DashSoundTimer]
@@ -1377,8 +1380,7 @@ Player_AccelerateRight:
     ld      a,l
     ld      [Player_XVelocityS],a
     pop     bc
-    ld      e,%00000000
-    
+    ld      e,%00000000    
     
     ; skid sound check
     ld      a,[Player_MovementFlags]
@@ -1927,11 +1929,28 @@ Player_SetAnimation:
     ld      a,[Player_AnimLock]
     and     a
     ret     nz
+    ld      d,h
+    ld      e,l
+    ld      hl,Player_CurrentAnimPointer
+    ld      a,[hl+]
+    ld      h,[hl]
+    ld      l,a
+    push    bc
+    ld      b,h
+    ld      c,l
+    call    Compare16
+    pop     bc
+    ret     z
+    ld      h,d
+    ld      l,e
+    
 Player_SetAnimationForce: ; call this to skip animation lock check
     ld      a,l
     ld      [Player_AnimPointer],a
+    ld      [Player_CurrentAnimPointer],a
     ld      a,h
     ld      [Player_AnimPointer+1],a
+    ld      [Player_CurrentAnimPointer+1],a
     ld      a,1
     ld      [Player_AnimTimer],a
     ret
@@ -2067,6 +2086,33 @@ AnimatePlayer:
    db   F_Player_CoffeeSteam5,2
    dbw  C_SetAnim,Anim_Player_IdleEscape
    
+   defanim Player_Dash
+   db   F_Player_Dash1,2
+   db   F_Player_Dash2,2
+   db   F_Player_Dash3,2
+   db   F_Player_Dash4,2
+;   db   F_Player_Dash1,2
+;   db   F_Player_Dash2,2
+;   db   F_Player_Dash3,2
+;   db   F_Player_Dash4,2
+;   db   F_Player_Dash1,2
+;   db   F_Player_Dash2,2
+;   db   F_Player_Dash3,2
+;   db   F_Player_Dash4,2
+;   db   F_Player_Dash1,2
+;   db   F_Player_Dash2,2
+;   db   F_Player_Dash3,2
+;   db   F_Player_Dash4,2
+;   db   F_Player_Dash1,2
+;   db   F_Player_Dash2,2
+;   db   F_Player_Dash3,2
+;   db   F_Player_Dash4,2
+;   db   F_Player_Dash1,2
+;   db   F_Player_Dash5,2
+;   db   F_Player_Dash6,2
+;   db   F_Player_Dash7,2
+   dbw  C_SetAnim,Anim_Player_Dash
+   
 ; ================================
 
 PLAYER_NUM_SPRITES = 0
@@ -2135,10 +2181,13 @@ PlayerSprites:
     defsprite Fall2
     defsprite Fall3
     defsprite Fall4
-;    defsprite Dash1
-;    defsprite Dash2
-;    defsprite Dash3
-;    defsprite Dash4
+    defsprite Dash1
+    defsprite Dash2
+    defsprite Dash3
+    defsprite Dash4
+    defsprite Dash5
+    defsprite Dash6
+    defsprite Dash7
     defsprite IdleEscape1
     defsprite IdleEscape2
     defsprite IdleEscape3

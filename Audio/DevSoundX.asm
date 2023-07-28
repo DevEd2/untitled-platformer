@@ -1931,6 +1931,13 @@ DSX_DummyChannel:
     sound_end
 DSX_DummyPitch:
     db  1,0,pitch_end
+    
+Mus_Dummy:
+    db  8,8
+    dw  DSX_DummyChannel
+    dw  DSX_DummyChannel
+    dw  DSX_DummyChannel
+    dw  DSX_DummyChannel
 
 db      "$$endcode$$"
 

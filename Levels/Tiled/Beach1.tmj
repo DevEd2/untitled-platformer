@@ -55,7 +55,7 @@
                         {
                          "name":"Music",
                          "type":"string",
-                         "value":"MUS_PLAINS"
+                         "value":"Mus_Dummy"
                         }, 
                         {
                          "name":"Palette",

@@ -106,7 +106,7 @@ GM_Level:
     call    Level_InitHUD
 
     ; setup registers
-    ld      a,LCDCF_ON | LCDCF_BG8000 | LCDCF_OBJON | LCDCF_BGON | LCDCF_WINON | LCDCF_WIN9C00
+    ld      a,LCDCF_ON | LCDCF_BG8000 | LCDCF_OBJON | LCDCF_BGON ; | LCDCF_WINON | LCDCF_WIN9C00
     ldh     [rLCDC],a
     ld      a,IEF_VBLANK
     ldh     [rIE],a
@@ -660,10 +660,15 @@ LoadMap:
     
     ; load music
     ld      a,[hl+]
-    ld      [Engine_LevelMusic],a
+    ld      b,a
+    ld      a,[hl+]
     push    hl
+    ld      h,[hl]
+    ld      l,a
+    ;ld      [Engine_LevelMusic],a
     call DSX_PlaySong
     pop     hl
+    inc     hl
     resbank
     ldh     [sys_TempBank3],a
 
