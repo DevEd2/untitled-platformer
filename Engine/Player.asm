@@ -2,6 +2,23 @@
 ; Player RAM defines
 ; ==================
 
+; TODO:
+; - Enemies should be able to be stunned
+; - Enemy <-> player collision while not dashing should knock player back 
+;   slightly instead of always killing player (unless enemy is attacking
+;   or has spikes)
+; - Player should be able to take damage - needs knockback
+; - Implement picking up/throwing enemies
+; - Implement lamia transformation
+; - Implement crab transformation
+; - Implement caffienated transformation
+; - Switch to using 8x16 mode for player sprites (right now we're using 8x8
+;   mode due to lack of tools for metasprite conversion for 8x16 mode)
+; - Add remaining sprite graphics + animations
+
+; KNOWN ISSUES:
+; - Breakable block collision isn't working properly
+
 section "Player RAM",wram0
 PlayerRAM:
 
@@ -229,6 +246,15 @@ ProcessPlayer:
     set     bPlayerIsMoving,[hl]
     
 .noaccel
+    ; do idle animation
+    push    de
+    ld      hl,Player_MovementFlags2
+    bit     bPlayerIsMoving,[hl]
+    jr      nz,:+
+    ld      hl,Anim_Player_Idle
+    call    Player_SetAnimation
+:
+    pop     de
     res     1,d
     ; get tile underneath player
     ld      a,[Player_YPos]
@@ -270,7 +296,7 @@ ProcessPlayer:
     ld      a,[Player_CoinCount+1]
     add     1   ; inc a doesn't set carry
     ld      [Player_CoinCount+1],a
-    jr      nc,.decel
+    jp      nc,.decel
     ld      a,$ff
     ld      [Player_CoinCount],a
     ld      [Player_CoinCount+1],a
@@ -296,7 +322,8 @@ ProcessPlayer:
     cp      COLLISION_BREAKABLE
     jr      nz,.donecollide
     call    .removetile2
-    ; TODO: sound effect + rubble
+    ; TODO: rubble
+    PlaySFX BlockBreak
     jp      .nodecel
 
 .removetile2
@@ -1005,33 +1032,28 @@ ProcessPlayer:
     ld      e,a
     xor     a
     ld      [Player_AnimLock],a
-    ld      a,[Player_XVelocity]
-    and     a
-    jr      z,:++
-    bit     bPlayerDashMaxSpeed,e
-    jr      z,:+
-    ld      hl,Anim_Player_Dash
-    jr      .setlandanim
-:   ld      hl,Anim_Player_Run
-    jr      .setlandanim
-:   ld      hl,Anim_Player_Idle    
-.setlandanim
-    call    Player_SetAnimation
-.skiplandanim
+    ld      a,e
     res     bPlayerIsAirborne,a
     ld      [Player_MovementFlags2],a
+    bit     bPlayerIsMoving,a
+    jr      z,.yCollideEnd
+    bit     bPlayerDashMaxSpeed,a
+    jr      nz,.yCollideEnd
+    ld      hl,Anim_Player_Run
+    call    Player_SetAnimation
 .yCollideEnd:
     ld      a,[Player_YVelocity]
     and     a
     jr      z,:+
     ld      hl,Player_MovementFlags2
-    bit     bPlayerIsAirborne,[hl]
-    jr      nz,:+
     set     bPlayerIsAirborne,[hl]
     bit     bPlayerDashMaxSpeed,[hl]
-    jr      z,:+
+    jr      nz,:+
+    ld      a,[Player_YVelocity]
+    bit     7,a
+    jr      nz,:+
     ld      hl,Anim_Player_Fall
-    call    Player_SetAnimation
+    call    Player_SetAnimationForce
     ld      a,1
     ld      [Player_AnimLock],a
 :   ld      a,[Player_XVelocity]
@@ -1074,15 +1096,14 @@ Player_Jump:
     ret     nz
     set     bPlayerIsAirborne,a
     ld      [Player_MovementFlags2],a
-    
-    PlaySFX Jump
     bit     bPlayerDashMaxSpeed,a
-    jr      z,:+
+    jr      nz,:+
     ld      hl,Anim_Player_Jump
     call    Player_SetAnimation
     ld      a,1
     ld      [Player_AnimLock],a
-:   ld      a,[Player_LastJumpY]
+:   PlaySFX Jump
+    ld      a,[Player_LastJumpY]
     add     7
     ld      b,a
     ld      a,[Player_YPos]
@@ -1258,7 +1279,7 @@ Player_AccelerateLeft:
     bit     bPlayerIsDashing,[hl]
     jr      z,:+
     ld      hl,Anim_Player_Dash
-    call    Player_SetAnimation
+    call    Player_SetAnimationForce
     ld      hl,Player_MovementFlags2
     set     bPlayerDashMaxSpeed,[hl]
     ld      a,[Player_DashSoundTimer]
@@ -1361,7 +1382,7 @@ Player_AccelerateRight:
     bit     bPlayerIsDashing,[hl]
     jr      z,:+
     ld      hl,Anim_Player_Dash
-    call    Player_SetAnimation
+    call    Player_SetAnimationForce
     ld      hl,Player_MovementFlags2
     set     bPlayerDashMaxSpeed,[hl]
     ld      a,[Player_DashSoundTimer]
@@ -1473,9 +1494,9 @@ DrawPlayer:
     
     
     ld      a,[Player_MovementFlags2]
-    bit     bPlayerDashMaxSpeed,a
-    jp      z,.notrail
     bit     bPlayerIsDashing,a
+    jp      z,.notrail
+    bit     bPlayerDashMaxSpeed,a
     jp      z,.notrail
     
     ; check if we're at max speed
@@ -1496,35 +1517,31 @@ DrawPlayer:
     ld      e,a
     call    Compare16
     pop     hl
-    jp      nz,.notrail
+    jr      z,.donetrail
     
-.trail1
-    ld      a,[sys_CurrentFrame]
-    and     1
-    jr      nz,.skiptrail1
-    jr      .trail2
-.skiptrail1
-
-.trail2
-    ld      a,[sys_CurrentFrame]
-    and     3
-    jr      nz,.skiptrail2
-    jr      .trail3
-.skiptrail2
-
-.trail3
-    ld      a,[sys_CurrentFrame]
-    and     7
-    jr      nz,.skiptrail3
-    jr      .donetrail
-.skiptrail3
-    jr      .donetrail
+;.trail1
+;    ld      a,[sys_CurrentFrame]
+;    and     1
+;    jr      nz,.skiptrail1
+;    jr      .trail2
+;.skiptrail1
+;
+;.trail2
+;    ld      a,[sys_CurrentFrame]
+;    and     3
+;    jr      nz,.skiptrail2
+;    jr      .trail3
+;.skiptrail2
+;
+;.trail3
+;    ld      a,[sys_CurrentFrame]
+;    and     7
+;    jr      nz,.skiptrail3
+;    jr      .donetrail
+;.skiptrail3
+;    jr      .donetrail
 
 .notrail
-;    xor     a
-;    rept    4*8
-;    ld      [hl+],a
-;    endr
     ld      hl,Player_MovementFlags2
     res     bPlayerDashMaxSpeed,[hl]
 
@@ -1538,6 +1555,7 @@ DrawPlayer:
 ; ====
 
 KillPlayer:
+    ret     ; !!! TEMP REMOVE ME
     ld      hl,Player_MovementFlags
     bit     bPlayerIsDead,[hl]
     ret     nz
@@ -1561,18 +1579,11 @@ KillPlayer:
 Player_Respawn:
     call    PalFadeOutWhite
     ld      a,2
-;    farcall ; DSX_Fade
-;:   halt
-;	ld		a,[sys_FadeState]
-;    and     a
-;    jr      nz,:-
+    ; !!! fade out audio here
+    
     call    AllPalsWhite
     call    UpdatePalettes
 :   halt
-	; ld	  a,[; DSX_FadeType]
-    ; and     a
-    ; jr      nz,:-
-    ; halt
     xor     a
     ldh     [rLCDC],a
     ld      a,[Player_LifeCount]
@@ -1879,6 +1890,8 @@ Player_SeeingStars:
     ld      [hl],1<<PARTICLE_FLAG_GRAVITY
     ret
 
+; called when the player touches the top or bottom of the screen
+; used to determine whether to scroll up or down to next subarea
 ; INPUT: a = current Y position
 ;        b = previous Y position
 Player_CheckSubscreenBoundary:
@@ -1929,6 +1942,8 @@ Player_SetAnimation:
     ld      a,[Player_AnimLock]
     and     a
     ret     nz
+Player_SetAnimationForce: ; skip animation lock check
+    ; check if new anim script pointer != previous anim script pointer
     ld      d,h
     ld      e,l
     ld      hl,Player_CurrentAnimPointer
@@ -1940,11 +1955,9 @@ Player_SetAnimation:
     ld      c,l
     call    Compare16
     pop     bc
-    ret     z
+    ret     z ; exit if new anim script pointer is the same as current
     ld      h,d
     ld      l,e
-    
-Player_SetAnimationForce: ; call this to skip animation lock check
     ld      a,l
     ld      [Player_AnimPointer],a
     ld      [Player_CurrentAnimPointer],a
@@ -2185,9 +2198,9 @@ PlayerSprites:
     defsprite Dash2
     defsprite Dash3
     defsprite Dash4
-    defsprite Dash5
-    defsprite Dash6
-    defsprite Dash7
+;    defsprite Dash5
+;    defsprite Dash6
+;    defsprite Dash7
     defsprite IdleEscape1
     defsprite IdleEscape2
     defsprite IdleEscape3
