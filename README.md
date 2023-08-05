@@ -1,2 +1,2 @@
-# gbcompo23
-GBCompo 2023 entry
+# untitled-platformer
+Untitled platformer for Game Boy Color
